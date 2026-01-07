@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Đăng Nhập / Đăng Ký - Elden Fruits</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="css/auth.css">
+</head>
+
+<body>
+    <!-- Top Bar -->
+    <div class="top-bar">
+        <div class="container">
+            <div class="contact-info">
+                <span><i class="fas fa-phone-alt"></i> 1900 69 69 69</span>
+                <span><i class="fas fa-envelope"></i> hunn1302@gmail.com</span>
+            </div>
+            <div class="social-links">
+                <a href="https://www.facebook.com/nhuhungu/?locale=vi_VN" target="_blank"><i
+                        class="fab fa-facebook-f"></i></a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Header Main -->
+    <div class="header-main">
+        <div class="container">
+            <a href="index.html" class="logo">Elden <span>Fruits</span></a>
+
+            <div class="search-box">
+                <input type="text" placeholder="Tìm kiếm trái cây, giỏ quà...">
+                <button><i class="fas fa-search"></i></button>
+            </div>
+
+            <div class="header-actions">
+                <div class="item">
+                    <i class="fas fa-user"></i>
+                    <div>Đăng nhập/Đăng kí</div>
+                    <div>Tài khoản của tôi</div>
+                </div>
+                <div class="item">
+                    <i class="fas fa-shopping-basket"></i>
+                    <div id="cart-count">Giỏ hàng (0)</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Navigation -->
+    <nav class="main-nav">
+        <div class="container">
+            <ul>
+                <li><a href="flash-sale.html">Chương trình khuyến mãi</a></li>
+                <li class="has-dropdown">
+                    <a href="all-products.html">Sản phẩm <i class="fas fa-caret-down"></i></a>
+                    <ul class="dropdown">
+                        <li><a href="best-seller.html">Best seller</a></li>
+                        <li><a href="all-products.html?category=dang-mua">Trái cây đang mùa</a></li>
+                        <li><a href="all-products.html?category=cherry">Cherry nhập khẩu</a></li>
+                        <li><a href="all-products.html?category=nho">Nho nhập khẩu</a></li>
+                        <li><a href="all-products.html?category=tao">Táo nhập khẩu</a></li>
+                        <li><a href="all-products.html?category=kiwi">Kiwi</a></li>
+                        <li><a href="all-products.html?category=viet-nam">Trái cây Việt Nam</a></li>
+                    </ul>
+                </li>
+                <li><a href="gift.html">Giỏ quà tặng</a></li>
+                <li><a href="cut-fruit.html">Trái cây cắt sẵn</a></li>
+                <li><a href="#">Khám phá Elden</a></li>
+                <li><a href="#">Liên hệ</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Auth Container -->
+    <div class="auth-wrapper">
+        <div class="auth-container">
+            <!-- Login Form -->
+            <div class="auth-card" id="login-card">
+                <div class="auth-header">
+                    <h2>Đăng Nhập</h2>
+                    <p>Chào mừng bạn quay trở lại!</p>
+                </div>
+
+                <form id="login-form" class="auth-form">
+                    <div class="form-group">
+                        <label for="login-email">
+                            <i class="fas fa-envelope"></i> Email
+                        </label>
+                        <input type="email" id="login-email" name="email" placeholder="example@email.com" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="login-password">
+                            <i class="fas fa-lock"></i> Mật khẩu
+                        </label>
+                        <div class="password-input">
+                            <input type="password" id="login-password" name="password" placeholder="••••••••" required>
+                            <button type="button" class="toggle-password" onclick="togglePassword('login-password')">
+                                <i class="fas fa-eye"></i>
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="form-options">
+                        <label class="remember-me">
+                            <input type="checkbox" id="remember-me">
+                            <span>Ghi nhớ đăng nhập</span>
+                        </label>
+                        <a href="#" class="forgot-password">Quên mật khẩu?</a>
+                    </div>
+
+                    <button type="submit" class="btn-submit">
+                        <i class="fas fa-sign-in-alt"></i> Đăng Nhập
+                    </button>
+
+                    <div class="social-login">
+                        <p>Hoặc đăng nhập với</p>
+                        <div class="social-buttons">
+                            <button type="button" class="btn-social google" onclick="loginWithGoogle()">
+                                <i class="fab fa-google"></i> Google
+                            </button>
+                            <button type="button" class="btn-social facebook" onclick="loginWithFacebook()">
+                                <i class="fab fa-facebook-f"></i> Facebook
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="auth-switch">
+                        Chưa có tài khoản? <a href="#" onclick="switchToRegister(event)">Đăng ký ngay</a>
+                    </div>
+                </form>
+            </div>
+
+            <!-- Register Form -->
+            <div class="auth-card" id="register-card" style="display: none;">
+                <div class="auth-header">
+                    <h2>Đăng Ký</h2>
+                    <p>Tạo tài khoản mới để mua sắm</p>
+                </div>
+
+                <form id="register-form" class="auth-form">
+                    <div class="form-group">
+                        <label for="register-name">
+                            <i class="fas fa-user"></i> Họ và tên
+                        </label>
+                        <input type="text" id="register-name" name="name" placeholder="Nguyễn Văn A" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="register-email">
+                            <i class="fas fa-envelope"></i> Email
+                        </label>
+                        <input type="email" id="register-email" name="email" placeholder="example@email.com" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="register-phone">
+                            <i class="fas fa-phone"></i> Số điện thoại
+                        </label>
+                        <input type="tel" id="register-phone" name="phone" placeholder="0123 456 789" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="register-password">
+                            <i class="fas fa-lock"></i> Mật khẩu
+                        </label>
+                        <div class="password-input">
+                            <input type="password" id="register-password" name="password" placeholder="••••••••" required>
+                            <button type="button" class="toggle-password" onclick="togglePassword('register-password')">
+                                <i class="fas fa-eye"></i>
+                            </button>
+                        </div>
+                        <div class="password-strength">
+                            <div class="strength-bar" id="strength-bar"></div>
+                        </div>
+                        <small class="password-hint">Tối thiểu 6 ký tự</small>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="register-confirm-password">
+                            <i class="fas fa-lock"></i> Xác nhận mật khẩu
+                        </label>
+                        <div class="password-input">
+                            <input type="password" id="register-confirm-password" name="confirm-password" placeholder="••••••••" required>
+                            <button type="button" class="toggle-password" onclick="togglePassword('register-confirm-password')">
+                                <i class="fas fa-eye"></i>
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="checkbox-label">
+                            <input type="checkbox" id="agree-terms" required>
+                            <span>Tôi đồng ý với <a href="#">Điều khoản dịch vụ</a> và <a href="#">Chính sách bảo mật</a></span>
+                        </label>
+                    </div>
+
+                    <button type="submit" class="btn-submit">
+                        <i class="fas fa-user-plus"></i> Đăng Ký
+                    </button>
+
+                    <div class="auth-switch">
+                        Đã có tài khoản? <a href="#" onclick="switchToLogin(event)">Đăng nhập</a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Notification -->
+    <div id="auth-notification"></div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <h3>Về Elden Fruits</h3>
+                    <p>Hệ thống trái cây nhập khẩu uy tín hàng đầu Việt Nam. Cam kết chất lượng và nguồn gốc xuất xứ
+                        rõ ràng.</p>
+                </div>
+                <div class="footer-col">
+                    <h3>Hỗ Trợ Khách Hàng</h3>
+                    <ul>
+                        <li><a href="#">Chính sách đổi trả</a></li>
+                        <li><a href="#">Hướng dẫn mua hàng</a></li>
+                        <li><a href="#">Chính sách bảo mật</a></li>
+                        <li><a href="#">Liên hệ</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h3>Thông Tin Liên Hệ</h3>
+                    <ul>
+                        <li><i class="fas fa-map-marker-alt"></i> Hà Nội, Việt Nam</li>
+                        <li><i class="fas fa-phone"></i> 1900 69 69 69</li>
+                        <li><i class="fas fa-envelope"></i> hieptrumtoantin.com.vn</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="copyright">
+                &copy; 2025 Elden Fruits. All rights reserved.
+            </div>
+        </div>
+    </footer>
+
+    <!-- Cart Manager -->
+    <script src="js/cart-manager.js"></script>
+    <script src="js/auth.js"></script>
+</body>
+
+</html>
